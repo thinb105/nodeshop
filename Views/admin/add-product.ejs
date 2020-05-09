@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+  <link rel="stylesheet" href="css/mystyle.css">
+  <title><%= pageTitle%></title>
+</head>
+<%- include('../includes/navigation') %>
+<body>
+<form action="/admin/addproduct" method="POST" style="width: 400px;margin: auto;" enctype="multipart/form-data">
+  <div class="form-group">
+    <label for="title">Title:</label>
+    <% const title_msg = validationErrors.find(m => m.param === 'title')%>
+    <input type="text" name="title" id="title" class="form-control <%= title_msg ? 'is-invalid' : ''%>"
+      value="<%= oldInput.title%>">
+    <% if(title_msg) { %>
+    <div class="invalid-feedback"><%= title_msg.msg%></div>
+    <% } %>
+  </div>
+
+  <div class="form-group">
+    <label for="price">Price:</label>
+    <% const price_msg = validationErrors.find(m => m.param === 'price')%>
+    <input type="text" name="price" id="price" class="form-control <%= price_msg ? 'is-invalid' : ''%> "
+      value="<%= oldInput.price%>">
+    <%if(price_msg) { %>
+    <div class="invalid-feedback" role="alert"><%=price_msg.msg%></div>
+    <% } %>
+  </div>
+
+  <div class="form-group">
+    <label for="image">Image:</label>
+    <input type="file" class="form-control-file" id="image" name="image">
+  </div>
+
+   <div class="form-group">
+    <label for="description">Desciption:</label>
+    <input type="text" name="description" id="description" class="form-control" value="<%= oldInput.description%>">
+   </div>
+
+    <input type="hidden" name="_csrf" value="<%= csrfToken%>">
+    <div style="text-align: center;">
+        <button type="submit" class="btn btn-outline-success" >Submit</button>
+    </div>
+</form>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+</body>
+</html>

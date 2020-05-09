@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+ 
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
+      rel="stylesheet">
+  <link rel="stylesheet" href="css/mystyle.css">
+  <title><%= pageTitle%></title>
+</head>
+<body>
+  <%- include('../includes/navigation') %> 
+  <% if (products.length > 0) { %>
+    <div class="cards">
+      <% for( let item of products) { %>
+        <div class="card">
+          <a href="/product/<%= item._id %>"><img src="<%= item.imageURL %>" alt="" class="card-image"></a>
+          <div class="card-content">
+            <h5><%= item.title%></h5>
+            <p><%= item.description %></p>         
+          </div>     
+        <div class="card-info">
+          <p><%= item.price %> đ</p>
+          <% if(isAuthentication) { %>
+            <a href="/addToCart/<%= item._id%>"><i class="material-icons">shopping_cart</i></a>
+          <% } %>
+        </div>
+      </div>
+        <% } %>
+    </div> 
+
+   
+<% } else { %>
+    <h1>No Products Found!</h1>
+<% } %>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+  
+</body>
+</html>

@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title><%= pageTitle%></title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.10.20/css/jquery.dataTables.min.css">
+    <link rel="stylesheet" href="css/mystyle.css">
+    <link rel="stylesheet" href="css/order.css">
+</head>
+<body>
+    <%-include('../includes/navigation') %>
+    <main>
+        <% if (orders.length <= 0) { %>
+            <div class="alert alert-primary" role="alert">
+                <strong>You did not place any order!</strong>
+            </div>
+        <% } else { %>
+            <ul class="orders">
+                <% for(order of orders) { %>
+                    <li class="orders__item">
+                        <h1>Order - # <%= order._id %> <a href="/invoice/<%=order._id%>">Invoice</a> </h1>
+                        <ul class="orders__products">
+                            <% for(p of order.products) { %>
+                                <li class="orders__products-item"><%= p.product.title %> (<%= p.quantity %>)</li>
+                            <% }; %>
+                        </ul>
+                    </li>
+                <% }; %>
+            </ul>
+        <% } %>
+   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js"></script>
+</body>
+</html>

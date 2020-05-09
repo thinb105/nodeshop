@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
+      rel="stylesheet">
+  <link rel="stylesheet" href="css/mystyle.css">
+  <title><%= pageTitle%></title>
+</head>
+<body> 
+  <%-include('../includes/navigation') %>
+
+  <a href="/admin/add-product" class="btn btn-success" style="margin-bottom: 50px;">Add New</a>
+  
+  <div class="cards">
+    <% for( let item of products) { %>
+      <div class="card">
+       <div class="car__image">
+        <img src="<%= item.imageURL %>" alt="">
+       </div>
+        <div class="card-content">
+          <h5><%= item.title%></h5>
+          <h6><%= item.price %> đ</h6>
+          <p><%= item.description %></p>         
+        </div>     
+      <div class="card-info" >
+        <a href="/admin/edit-product/<%= item._id%>"class="btn btn-info">Update</a>
+        <a href="/admin/delete-product/<%= item._id%>" class="btn btn-danger">Delete</a>
+      </div>
+    </div>
+      <% } %>
+  </div> 
+    
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+</body>
+</html>

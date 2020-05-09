@@ -1,0 +1,131 @@
+.cards {
+    margin: 0 auto;
+    max-width: 1000px;
+    height: 300px;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(225px,1fr));
+    gap: 20px;
+    font-family: Arial;
+}
+
+.card {
+    margin-top: 20px;
+    box-shadow: 0 0 3px rgba(0,0,0, 1);
+    max-height: 300px;
+}
+
+.card__image {
+    height: 140px;
+    width: 220px;
+    display: block;
+}
+
+img {
+    width: 100%; 
+    height: 140px;
+}
+
+.card-content {
+    line-height: 1.5;
+    font-size: 0.9em;
+    padding: 10px;
+    background: #fafafafa;
+    height: 100px;
+    margin-bottom: 0px;
+}
+
+.card-content h5,
+.card-content h6,
+.card-content p {
+    margin: 0px;
+}
+
+.card-info {
+    padding: 0px;
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    align-content: flex-end;
+    background: #eeeeee;
+    font-size: 1.0em;
+    color: black;
+    width: 100%;  
+    height: 60px;
+}
+
+.card-info a {
+    margin: 0px;
+}
+
+
+.card-info i {
+    color: black;
+}
+
+.cart__item-list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    margin: auto;
+    max-width: 100%;
+  }
+  
+.cart__item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1rem;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.26);
+    margin-bottom: 1rem;
+}
+
+.cart__item h1 {
+    margin: right;
+    text-align: right;
+    font-size: 1.2rem;
+}
+.cart__item h2 {
+  margin: left;
+  text-align: left;
+  font-size: 1.2rem;
+}
+
+.order__list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    margin: auto;
+    width: 40rem;
+    max-width: 90%;
+  }
+  
+.order {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1rem;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.26);
+    margin-bottom: 1rem;
+}
+
+.order h1 {
+    font-size: 1.2rem;
+    margin-right: 1rem;
+    margin:  0px;
+}
+
+.user-message {
+    margin: auto;
+    width: 90%;
+    border: 1px solid #4771fa;
+    padding: 0.5rem;
+    border-radius: 3px;
+    background: #b9c9ff;
+    text-align: center;
+  }
+  
+.user-message-error {
+    border-color: red;
+    background: rgb(255, 176, 176);
+    color: red;
+  }

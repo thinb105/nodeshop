@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+ 
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
+      rel="stylesheet">
+  <link rel="stylesheet" href="css/mystyle.css">
+  <title><%= pageTitle%></title>
+</head>
+<body>
+  <%- include('../includes/navigation') %> 
+
+  <div class="card" style="width: 18rem; margin: auto;">
+    <img src="\<%= product.imageURL %>" class="card-img-top" alt="<%= product.title%>">
+    <div class="card-body">
+      <h5 class="card-title"><%= product.title%></h5>
+      <h6><%= product.price %> đ</h6>
+      <p class="card-text"><%= product.description %></p>
+      <% if(isAuthentication) { %>
+        <a href="/addToCart/<%= product._id%>" class="btn btn-outline-success" style="margin: auto;">Add to cart</a>
+      <% } %>
+    </div>
+  </div>
+ 
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+  
+
+  
+
+</body>
+</html>

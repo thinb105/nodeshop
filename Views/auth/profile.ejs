@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+  <link rel="stylesheet" href="css/mystyle.css">
+  <title><%= pageTitle%></title>
+</head>
+<%- include('../includes/navigation') %>
+
+<body>
+
+
+  <div style="width: 500px; margin: auto; margin-top: 100px;">
+    <form action="/auth/profile" method="POST" novalidate>
+      <div class="form-group">
+        <label for="email">Email:</label>
+        <input type="text" name="email" id="email" class="form-control" value="<%= user.email %>" readonly>
+      </div>
+      <div class="form-row">
+        <div class="col">
+          <label for="firstName">FirstName:</label>
+          <input type="text" name="firstName" id="firstName" class="form-control"
+            value="<%= oldInput.fname ? oldInput.fname : user.firstName%>">
+        </div>
+        <div class="col">
+          <label for="lastName">LastName:</label>
+          <input type="text" name="lastName" id="lastName" class="form-control"
+            value="<%= oldInput.lname ? oldInput.lname : user.lastName%>">
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="phone">Mobile Phone</label>
+        <% const phone_msg = errors.find(e => e.param === 'phone')%>
+        <input type="text" name="phone" id="phone" class="form-control <%= phone_msg ? 'is-invalid' : ''%>"
+          value="<%= oldInput.phone ? oldInput.phone : user.phone%>">
+        <% if(phone_msg) {%>
+        <div class="invalid-feedback"><%=phone_msg.msg%></div>
+        <% } %>
+      </div>
+      <div class="form-group">
+        <label for="address">Address</label>
+        <input type="text" name="address" id="address" class="form-control" value="<%= user.address%>">
+      </div>
+      <input type="hidden" name="_csrf" value="<%= csrfToken%>">
+      <hr>
+      <button type="submit" class="btn btn-outline-success" style="width: 100%; text-align: center;">Save</button>
+    </form>
+  </div>
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+  <script
+    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAueyVjqb0wVU0UqQhC1KLwBp1031xSxuE&libraries=places"></script>
+</body>
+
+</html>
+
+<script type="text/javascript">
+  $(document).ready(function () {
+    var input = document.getElementById('address');
+    var autocomplete = new google.maps.places.Autocomplete(input);
+  })
+</script>

@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title><%= pageTitle%></title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.10.20/css/jquery.dataTables.min.css">
+    <link rel="stylesheet" href="css/mystyle.css">
+</head>
+<body>
+    <%- include('../includes/navigation') %>
+    <main>
+        <div style="margin-top: 20px; margin: auto; max-width: 800px">
+            <table  id="pTable" class="table table-striped table-bordered" style="width: 100%; font-family: 'Times New Roman'">
+                <thead>
+                    <tr >
+                        <th>Item</th>
+                        <th style="text-align: right;">Quantity</th>
+                        <th style="text-align: right;">Line Total</th>
+                    </tr>
+                </thead>
+                <tbody >
+                    <% for(let item of products){ %>
+                        <tr>
+                            <td>
+                                <%= item.product.title %>
+                            </td>
+                            <td style="text-align: right;">
+                                <%= item.quantity %>
+                            </td>
+                            <td style="text-align: right;">
+                                <%= item.product.price * item.quantity %>
+                            </td>
+                        </tr>
+                    <% } %>
+                </tbody>
+                <tfoot>
+                    <tr>
+                        <td colspan="2" style="text-align: center; font-style: italic;" class="font-weight-bold">Sub Total</td>
+                        <td style="text-align: right;"><%= SubTotal %></td>
+                    </tr>
+                </tfoot>            
+            </table>
+            <button class="btn btn-outline-success" style="width: 100%; margin: auto;" id="btnOrder">Place Order</button>
+        </div>
+    </main>
+   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js"></script>
+    <script src="https://js.stripe.com/v3/"></script>
+</body>
+</html>
+
+<script type="text/javascript">
+  $(document).ready(function(){
+      var stripe = Stripe('pk_test_gxmXDz9m2OfjiimUHZsq0DaG00JDrYSayT');
+      $('#btnOrder').click(function(){
+          stripe.redirectToCheckout({
+              sessionId: '<%= sessionId %>'
+          })
+      })
+  })
+</script>

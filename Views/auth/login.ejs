@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+  <link rel="stylesheet" href="css/mystyle.css">
+  <title><%= pageTitle%></title>
+</head>
+<%- include('../includes/navigation') %>
+<body>
+
+  
+  <div style="width: 400px;margin: auto; ">
+    <% if(errorMessage) {%>
+      <div class="alert alert-danger" role="alert"><%= errorMessage%></div>
+    <% } %>
+    <form action="/auth/login" style="width: 100%;" method="POST" >
+      <label for="email">Email: </label>
+      <input type="text" name="email" id="email" class="form-control" value="<%= userInput.email%>">
+      <label for="password">Password:</label>
+      <input type="password" name="password" id="password" class="form-control"  value="<%= userInput.password%>"> 
+      <input type="hidden" name="_csrf" value="<%= csrfToken%>">
+      <hr>
+      <div style="text-align: center; width: 100%;">
+          <button type="submit" class="btn btn-outline-success" >Login</button>
+      </div>
+  </form>
+  </div>
+
+
+<div style="text-align: right; width: 400px; margin: auto;">
+  <a href="/auth/reset">Forgot Password</a>
+</div>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+</body>
+</html>

@@ -1,0 +1,29 @@
+body {
+    padding: 18px;
+    background: rgb(207, 202, 202);
+}
+
+.cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+    gap: 26px 32px;   
+}
+
+li {
+    padding-top: 56.25%;
+    height: auto;
+    background: whitesmoke;
+    border-radius: 18px;
+    position: relative;
+}
+
+li > img {
+    position: absolute;
+    width: 100%;
+}
+
+@media screen and (max-width: 320px) {
+    ul {
+       grid-template-columns: repeat(auto-fill, minmax(100%, 1fr));
+    }
+ }

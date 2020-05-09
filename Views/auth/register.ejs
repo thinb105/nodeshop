@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+  <link rel="stylesheet" href="css/mystyle.css">
+  <title><%= pageTitle%></title>
+</head>
+<%- include('../includes/navigation') %>
+
+<body>
+
+
+  <div style="width: 400px; margin: auto; margin-top: 100px;">
+    <form action="/auth/signup" method="POST" novalidate>
+      <label for="email">Email: </label>
+      <% const email_msg = validationErrors.find(e => e.param === 'email')%>
+      <input type="text" name="email" id="email" class="form-control <%= email_msg ? 'is-invalid' :'' %>"
+        value="<%= userInput.email%>"
+      >
+      <% if(email_msg) { %>
+      <div class="invalid-feedback"> <%= email_msg.msg%></div>
+      <% } %>
+
+      <label for="password">Password</label>
+      <% const password_msg = validationErrors.find(e=> e.param === 'password') %>
+      <input type="password" name="password" id="password" class="form-control <%= password_msg ? 'is-invalid' : '' %>"
+        value="<%= userInput.password%>"
+      >
+      <% if(password_msg) { %>
+      <div class="invalid-feedback"><%= password_msg.msg%></div>
+      <% } %>
+
+      <% const confirmation_msg = validationErrors.find(e=> e.param === 'confirmation') %>
+      <label for="confirmation">Confirm Password</label>
+      <input type="password" name="confirmation" id="confirmation"
+        class="form-control <%= confirmation_msg ? 'is-invalid' : '' %>"
+        value="<%= userInput.confirmPassword%>"
+        >
+      <% if(confirmation_msg) { %>
+      <div class="invalid-feedback"><%= confirmation_msg.msg%></div>
+      <% } %>
+
+      <input type="hidden" name="_csrf" value="<%= csrfToken%>">
+      <hr>
+      <div style="text-align: center; width: 100%;">
+        <button type="submit" class="btn btn-outline-success">SignUp</button>
+      </div>
+    </form>
+  </div>
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+</body>
+
+</html>
