@@ -1,5 +1,5 @@
 # nodeshop
-A simple ecommercial website with some essential funnction.
+A simple ecommercial website with some essential function.
 
 You can register your own customer account to checck them.
 
