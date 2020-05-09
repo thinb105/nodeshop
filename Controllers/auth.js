@@ -168,7 +168,7 @@ exports.postResetPassword = (req, res, next) => {
                 subject: 'shop-node Reset password',
                 html: `
                     <p>You just requested to reset your password</p>
-                    <p>Click this <a href="http:/${req.get('host')}/auth/changepassword/${token}">link</a></p>
+                    <p>Click this <a href="${req.protocol}://${req.get('host')}/auth/changepassword/${token}">link</a></p>
                 `
             })
 
